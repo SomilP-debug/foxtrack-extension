@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "FoxTrack Pro",
+  "version": "2.0",
+  "description": "Track email opens, multi-device view history, link clicks, and set unread alerts.",
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "webRequest",
+    "webRequestBlocking",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://mail.google.com/*",
+    "*://*.onrender.com/*",
+    "*://*.googleusercontent.com/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://mail.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "FoxTrack Dashboard"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "foxtrackpro@yourdomain.com",
+      "strict_min_version": "109.0"
+    }
+  }
+}
